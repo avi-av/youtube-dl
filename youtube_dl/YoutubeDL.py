@@ -1699,7 +1699,8 @@ class YoutubeDL(object):
         self._num_downloads += 1
 
         info_dict['_filename'] = filename = self.prepare_filename(info_dict)
-
+        self.info = []
+        self.info.append(info_dict)
         # Forced printings
         if self.params.get('forcetitle', False):
             self.to_stdout(info_dict['fulltitle'])
