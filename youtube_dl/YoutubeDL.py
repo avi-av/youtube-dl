@@ -2062,6 +2062,7 @@ class YoutubeDL(object):
                         os.remove(encodeFilename(old_filename))
                     except (IOError, OSError):
                         self.report_warning('Unable to remove downloaded original file')
+        return info
 
     def _make_archive_id(self, info_dict):
         video_id = info_dict.get('id')
