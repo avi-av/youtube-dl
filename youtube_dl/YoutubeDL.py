@@ -1639,7 +1639,8 @@ class YoutubeDL(object):
             for format in formats_to_download:
                 new_info = dict(info_dict)
                 new_info.update(format)
-                self.process_info(new_info)
+                process_info = self.process_info(new_info)
+                info_dict.update(process_info)
         # We update the info dict with the best quality format (backwards compatibility)
         info_dict.update(formats_to_download[-1])
         return info_dict
@@ -1987,7 +1988,7 @@ class YoutubeDL(object):
                         assert fixup_policy in ('ignore', 'never')
 
                 try:
-                    self.post_process(filename, info_dict)
+                    return self.post_process(filename, info_dict)
                 except (PostProcessingError) as err:
                     self.report_error('postprocessing: %s' % str(err))
                     return
